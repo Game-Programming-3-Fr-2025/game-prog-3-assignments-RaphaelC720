@@ -18,17 +18,30 @@ public class UIScript : MonoBehaviour
     public void Update()
     {
         UpdateStickText();
-        if (manager.currentSticks == 2)
-        {
-            CampfiretxtPanel.SetActive(true);
-            Arrow.SetActive(true);
-        }
 
         float healthPercent = Mathf.Clamp01(player.currentHealth / player.maxHealth);
         fillbar.fillAmount = healthPercent;
+
+        if (manager.CampFireActive) return;
+
+        if (CampfiretxtPanel.activeSelf)
+        {
+            return;
+        }
+        else if(manager.currentSticks >= 2)
+        {
+            TurnOnTextToCampfire();
+        }
+        
     }
     public void UpdateStickText()
     {
         currentStickText.text = manager.currentSticks.ToString() + "/2";
+    }
+
+    public void TurnOnTextToCampfire()
+    {
+        CampfiretxtPanel.SetActive(true);
+        Arrow.SetActive(true);
     }
 }

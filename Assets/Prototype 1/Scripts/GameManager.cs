@@ -21,16 +21,15 @@ public class GameManager : MonoBehaviour
             {
                 MakeFire();
             }
+            currentSticksPanel.SetActive(false);
         }
     }
 
     public void MakeFire()
     {
         campfireLight.SetActive(true);
-        currentSticks = 0;
         CampfirePanel.SetActive(false);
         campfireText.SetActive(false);
-        currentSticksPanel.SetActive(false);
         arrow.SetActive(false);
         CampFireActive = true;
 
