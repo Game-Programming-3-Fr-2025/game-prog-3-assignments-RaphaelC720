@@ -98,15 +98,40 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+<<<<<<< HEAD
+=======
+  - first: {x: -7, y: 1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 1
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+>>>>>>> 7aaa4bb28bcf4c5df64925c52d698d3dcc4ff1ce
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: ea85d751234013e4ca71169405b7feb3, type: 2}
+<<<<<<< HEAD
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: 7482667652216324306, guid: 21e3c3d5ee3524147a59373298d6994e, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 1
+=======
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: bfe87adf277285d4c84aa575c08bb451, type: 2}
+  m_TileSpriteArray:
+  - m_RefCount: 1
+    m_Data: {fileID: 7482667652216324306, guid: 21e3c3d5ee3524147a59373298d6994e, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 4866414936888787194, guid: 994b46a42e5e04647ada4fa1cd5717cd, type: 3}
+  m_TileMatrixArray:
+  - m_RefCount: 2
+>>>>>>> 7aaa4bb28bcf4c5df64925c52d698d3dcc4ff1ce
     m_Data:
       e00: 1
       e01: 0
@@ -126,12 +151,22 @@ Tilemap:
       e33: 1
   m_TileColorArray:
   - m_RefCount: 1
+<<<<<<< HEAD
+=======
+    m_Data: {r: 0.078431375, g: 0.078431375, b: 0.078431375, a: 1}
+  - m_RefCount: 1
+>>>>>>> 7aaa4bb28bcf4c5df64925c52d698d3dcc4ff1ce
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+<<<<<<< HEAD
   m_Origin: {x: -8, y: 0, z: 0}
   m_Size: {x: 8, y: 2, z: 1}
+=======
+  m_Origin: {x: -8, y: 1, z: 0}
+  m_Size: {x: 2, y: 1, z: 1}
+>>>>>>> 7aaa4bb28bcf4c5df64925c52d698d3dcc4ff1ce
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -273,7 +308,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5648029140818445989, guid: b0d57b1306140194d95a7eb7daf6b71b, type: 3}
   m_PrefabInstance: {fileID: 5773045905319120234}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 --- !u!114 &1429863708490389432
+=======
+--- !u!114 &1843407828932504201
+>>>>>>> 7aaa4bb28bcf4c5df64925c52d698d3dcc4ff1ce
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

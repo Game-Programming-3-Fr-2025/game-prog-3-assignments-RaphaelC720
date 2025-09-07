@@ -7,13 +7,14 @@ public class CampfireScript : MonoBehaviour
     public GameManager GM;
     public PlayerScript player;
 
-    private void Start()
+    void Start()
     {
-        GM.CampFireActive = false;
+        
+        
     }
     void Update()
     {
-        
+
     }
 
     void OnTriggerEnter2D(Collider2D collision)
