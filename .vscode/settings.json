@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj",
     },
-    "dotnet.defaultSolution": "game-prog-3-assignments-RaphaelC720.sln"
+    "dotnet.defaultSolution": "game-prog-3-assignments-RaphaelC720-main.sln"
 }
