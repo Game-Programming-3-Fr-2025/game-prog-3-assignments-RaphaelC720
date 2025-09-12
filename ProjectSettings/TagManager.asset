@@ -6,6 +6,8 @@ TagManager:
   tags:
   - wall
   - arrow
+  - astroid
+  - rocket
   layers:
   - Default
   - TransparentFX
