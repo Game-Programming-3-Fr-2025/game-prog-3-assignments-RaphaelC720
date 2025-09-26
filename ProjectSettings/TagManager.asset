@@ -8,6 +8,9 @@ TagManager:
   - arrow
   - astroid
   - rocket
+  - door
+  - enemy
+  - hazard
   layers:
   - Default
   - TransparentFX
