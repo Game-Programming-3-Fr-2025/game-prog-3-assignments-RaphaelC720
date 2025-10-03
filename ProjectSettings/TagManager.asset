@@ -11,6 +11,9 @@ TagManager:
   - door
   - enemy
   - hazard
+  - Flag
+  - StartFlag
+  - EndFlag
   layers:
   - Default
   - TransparentFX
