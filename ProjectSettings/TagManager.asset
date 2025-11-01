@@ -6,11 +6,20 @@ TagManager:
   tags:
   - wall
   - arrow
+  - astroid
+  - rocket
+  - door
+  - enemy
+  - hazard
+  - Flag
+  - StartFlag
+  - EndFlag
+  - Coin
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 

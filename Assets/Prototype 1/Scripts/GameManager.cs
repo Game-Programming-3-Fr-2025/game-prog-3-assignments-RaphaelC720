@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
         arrow.SetActive(false);
         CampFireActive = true;
 
+        player.mylight.intensity = 3;
         player.mylight.intensity = 5;
         player.mylight.falloffIntensity = 10;
         player.mylight.transform.localScale = new Vector3(2.25f, 2.25f, 2.25f);
