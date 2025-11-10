@@ -1,4 +1,5 @@
 using System.Collections;
+using NUnit.Framework;
 using UnityEngine;
 
 public class PlayerScript3 : MonoBehaviour
@@ -23,6 +24,8 @@ public class PlayerScript3 : MonoBehaviour
     Vector2 checkpointPosition;
 
     public int coinsCollected = 0;
+    public int deathCount;
+    public bool isDead;
     
     public SpriteRenderer mySR;
     public Rigidbody2D myRB;
@@ -70,7 +73,7 @@ public class PlayerScript3 : MonoBehaviour
             direction = launchDir;                   
             power = clampedPower;
 
-            Debug.Log($"RawMag: {rawMag:F2}, Clamped: {clampedPower:F2}, Dir: {launchDir}");
+            //Debug.Log($"RawMag: {rawMag:F2}, Clamped: {clampedPower:F2}, Dir: {launchDir}");
 
 
         }
@@ -126,7 +129,10 @@ public class PlayerScript3 : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        coinsCollected++;
+        if (collision.CompareTag("Coin"))
+        {
+            coinsCollected++;
+        }
     }
     public void UpdateCheckpoint(Vector2 pos)
     {
@@ -139,11 +145,15 @@ public class PlayerScript3 : MonoBehaviour
 
     IEnumerator Respawn(float duration)
     {
+        if (isDead) yield break;
+        isDead = true;
+
         myRB.linearVelocity = Vector2.zero;
         myRB.simulated = false;
         transform.localScale = Vector2.zero;
 
         yield return new WaitForSeconds(duration);
+        deathCount += 1;
 
         if (infectedTilemap != null)
             infectedTilemap.RestoreAllToStart();
@@ -152,12 +162,13 @@ public class PlayerScript3 : MonoBehaviour
         transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
         myRB.simulated = true;
         state = PlayerStates.Idle;
+        isDead = false;
     }
 }
 
 public enum PlayerStates
 {
-        Idle,
-        Launching,
-        Launched
+    Idle,
+    Launching,
+    Launched
 }

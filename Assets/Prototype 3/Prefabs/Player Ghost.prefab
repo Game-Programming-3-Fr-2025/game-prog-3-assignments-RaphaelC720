@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 3427670346965747455}
   - component: {fileID: 4127258888786932629}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player Ghost
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -353,7 +353,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 5886662587953376987, guid: f63461bfe06653948b85610346455578, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -390,6 +390,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   coinsCollected: 0
+  deathCount: 0
+  isDead: 0
   mySR: {fileID: 0}
   myRB: {fileID: 0}
   state: 0

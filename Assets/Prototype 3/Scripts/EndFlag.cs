@@ -1,29 +1,32 @@
-using TMPro;
-using Unity.AppUI.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EndFlag : MonoBehaviour
 {
-    [SerializeField] private GameObject button;
-    [SerializeField] private GameObject particle1;
-    [SerializeField] private GameObject particle2;
+    [SerializeField] private GameObject LevelCompletePanel;
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        button.SetActive(true);
-        particle1.SetActive(true);
-        particle2.SetActive(true);
+        LevelCompletePanel.SetActive(true);
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
+    public void ExitButton()
     {
-        button.SetActive(false);
-        particle1.SetActive(false);
-        particle2.SetActive(false);
+        SceneManager.LoadScene("Level Selection");
     }
-
-    public void TryAgain()
+    public void Level1()
     {
-        SceneManager.LoadScene("project3");
+        SceneManager.LoadScene("Level 1");
+    }
+    public void Level2()
+    {
+        SceneManager.LoadScene("Level 2");
+    }
+    public void Level3()
+    {
+        SceneManager.LoadScene("Level 3");
+    }    
+    public void Level4()
+    {
+        SceneManager.LoadScene("Level 4");
     }
 }
