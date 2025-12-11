@@ -533,6 +533,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b43804f892c5bbd469b73ea3fd281c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectSprites: []
+  frameRate: 0.1
+  coinPS: {fileID: 0}
 --- !u!58 &376688583
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1174,6 +1177,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b43804f892c5bbd469b73ea3fd281c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectSprites: []
+  frameRate: 0.1
+  coinPS: {fileID: 0}
 --- !u!58 &818590478
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1316,6 +1322,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b43804f892c5bbd469b73ea3fd281c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectSprites: []
+  frameRate: 0.1
+  coinPS: {fileID: 0}
 --- !u!58 &1079265328
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2359,7 +2368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 1767018335}
-  healthyColor: {r: 1, g: 1, b: 1, a: 1}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
   timeToVanish: 4
 --- !u!19719996 &1767018337
 TilemapCollider2D:
@@ -2914,7 +2923,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 201928693}
         m_TargetAssemblyTypeName: EndFlag, Assembly-CSharp
-        m_MethodName: Level4
+        m_MethodName: Level13
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3047,7 +3056,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 201928693}
         m_TargetAssemblyTypeName: EndFlag, Assembly-CSharp
-        m_MethodName: ExitButton
+        m_MethodName: Level14
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3125,11 +3134,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5029727666024534709, guid: a20ec793302a3c74288a92aa8502f93e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 92.81
+      value: 0.82
       objectReference: {fileID: 0}
     - target: {fileID: 5029727666024534709, guid: a20ec793302a3c74288a92aa8502f93e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.93
+      value: -0.07
       objectReference: {fileID: 0}
     - target: {fileID: 5029727666024534709, guid: a20ec793302a3c74288a92aa8502f93e, type: 3}
       propertyPath: m_LocalPosition.z
