@@ -5,24 +5,17 @@ using UnityEngine.Tilemaps;
 public class InfectedTilemap : MonoBehaviour
 {
     public Tilemap tilemap;
-    public Color healthyColor = Color.white;
+    public Color normalColor = Color.white;
     public float timeToVanish = 5f;
 
     private readonly Dictionary<Vector3Int, Coroutine> active = new();
     private readonly Dictionary<Vector3Int, TileBase> original = new();
 
-    private void Reset()
-    {
-        tilemap = GetComponent<Tilemap>();
-    }
     void Awake()
     {
-        if (!tilemap) tilemap = GetComponent<Tilemap>();
+        if (!tilemap) 
+            tilemap = GetComponent<Tilemap>();
         CacheOriginal();
-    }
-    private void Update()
-    {
-
     }
 
     public void InfectAtWorldPos(Vector3 worldPos)
@@ -37,18 +30,16 @@ public class InfectedTilemap : MonoBehaviour
     }
     public void RestoreAllToStart()
     {
-        // stop all pending infections
-        foreach (var kv in active)
-            if (kv.Value != null) StopCoroutine(kv.Value);
+        foreach (var keyValue in active)
+            if (keyValue.Value != null) StopCoroutine(keyValue.Value);
         active.Clear();
 
-        // wipe map then place original tiles
         tilemap.ClearAllTiles();
-        foreach (var kv in original)
+        foreach (var keyValue in original)
         {
-            tilemap.SetTile(kv.Key, kv.Value);
-            tilemap.SetTileFlags(kv.Key, TileFlags.None); // allow tint
-            tilemap.SetColor(kv.Key, healthyColor);       // reset tint
+            tilemap.SetTile(keyValue.Key, keyValue.Value);
+            tilemap.SetTileFlags(keyValue.Key, TileFlags.None); 
+            tilemap.SetColor(keyValue.Key, normalColor);      
         }
         tilemap.RefreshAllTiles();
     }

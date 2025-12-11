@@ -29,4 +29,44 @@ public class EndFlag : MonoBehaviour
     {
         SceneManager.LoadScene("Level 4");
     }
+    public void Level5()
+    {
+        SceneManager.LoadScene("Level 5");
+    }
+    public void Level6()
+    {
+        SceneManager.LoadScene("Level 6");
+    }
+    public void Level7()
+    {
+        SceneManager.LoadScene("Level 7");
+    }
+    public void Level8()
+    {
+        SceneManager.LoadScene("Level 8");
+    }
+    public void Level9()
+    {
+        SceneManager.LoadScene("Level 9");
+    }
+    public void Level10()
+    {
+        SceneManager.LoadScene("Level 10");
+    }
+    public void Level11()
+    {
+        SceneManager.LoadScene("Level 11");
+    }
+    public void Level12()
+    {
+        SceneManager.LoadScene("Level 12");
+    }
+    public void Level13()
+    {
+        SceneManager.LoadScene("Level 13");
+    }
+    public void Level14()
+    {
+        SceneManager.LoadScene("Level 14");
+    }
 }

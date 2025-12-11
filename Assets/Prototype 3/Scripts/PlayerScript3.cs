@@ -1,32 +1,34 @@
 using System.Collections;
-using NUnit.Framework;
 using UnityEngine;
 
 public class PlayerScript3 : MonoBehaviour
 {
-    public Vector3 dragStartWorldPos;
-    public Vector3 currentMouseWorld;
-    private Vector3 pullVector;
+    public Vector2 dragStartWorldPos;
+    public Vector2 currentMouseWorld;
+    //
+    public float playerRawMag;
     public float power;
-    public Vector3 direction;
+    public Vector2 direction;
     private float clampedPower;   
-    private Vector3 launchDir;     
+    public Vector2 launchDir;     
     public float maxPullDistance;
-    [SerializeField] float minImpulse = 4f;        
-    [SerializeField] float maxImpulse = 18f;     
+    [SerializeField] public float minImpulse = 0f;        
+    [SerializeField] public float maxImpulse = 10f;     
     [SerializeField] float grabRadius = 1f;
 
     [SerializeField] private InfectedTilemap infectedTilemap;
     [SerializeField] private Vector2 feetOffset = new Vector2(0f, -0.5f);
-    [SerializeField] private float feetRadius = 0.15f;
+    [SerializeField] private float feetRadius = 0.10f;
     [SerializeField] private LayerMask groundLayer;
     private bool isGrounded;
+    public bool isLaunched;
+    private int timesLaunched;
     Vector2 checkpointPosition;
 
     public int coinsCollected = 0;
     public int deathCount;
     public bool isDead;
-    
+    public bool doubleLaunch;
     public SpriteRenderer mySR;
     public Rigidbody2D myRB;
     public PlayerStates state = PlayerStates.Idle;
@@ -37,65 +39,71 @@ public class PlayerScript3 : MonoBehaviour
         myRB = GetComponent<Rigidbody2D>();
         mySR = GetComponent<SpriteRenderer>();
         flag = FindAnyObjectByType<FlagScript>();
+        infectedTilemap = FindAnyObjectByType<InfectedTilemap>();
 
         checkpointPosition = transform.position;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && state == PlayerStates.Idle)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && (state == PlayerStates.Idle || (isLaunched == true && timesLaunched == 1)))
         {
-            var mousePos = Input.mousePosition;
+            Vector3 mousePos = Input.mousePosition;
             mousePos.z = 10f;
             Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(mousePos);
-
             if (Vector2.Distance(mouseWorld, transform.position) <= grabRadius)
             {
                 state = PlayerStates.Launching;
-                dragStartWorldPos = mouseWorld; 
+
+                dragStartWorldPos = transform.position;
+                myRB.linearVelocity = Vector2.zero;
+                myRB.angularVelocity = 0f;
+                clampedPower = 0f;
+                launchDir = Vector2.zero; 
             }
         }
-
         if (Input.GetKey(KeyCode.Mouse0) && state == PlayerStates.Launching)
         {
-            Vector3 mousePos2 = Input.mousePosition;
-            mousePos2.z = 10f;
-            currentMouseWorld = Camera.main.ScreenToWorldPoint(mousePos2);
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.z = 10f;
+            currentMouseWorld = Camera.main.ScreenToWorldPoint(mousePos);
 
-            Vector3 rawPull = dragStartWorldPos - currentMouseWorld;
-
+            Vector2 rawPull = dragStartWorldPos - currentMouseWorld;
             float rawMag = rawPull.magnitude;
-            float usedMag = Mathf.Min(rawMag, maxPullDistance);
-
-            // store for release
-            clampedPower = usedMag;                 
-            launchDir = (rawMag > 0.0001f) ? (rawPull / rawMag) : Vector3.zero; 
-            direction = launchDir;                   
-            power = clampedPower;
-
-            //Debug.Log($"RawMag: {rawMag:F2}, Clamped: {clampedPower:F2}, Dir: {launchDir}");
 
 
+            clampedPower = Mathf.Min(rawMag, maxPullDistance);
+            playerRawMag = clampedPower;    
+            if (rawMag > 0.0001f)
+                launchDir = rawPull.normalized;
+            else    
+                launchDir = Vector2.zero;
+
+            //launchDir = (rawMag > 0.0001f) ? (rawPull / rawMag) : Vector2.zero; 
+            //direction = launchDir;                   
+            //power = clampedPower;
         }
-
         if (Input.GetKeyUp(KeyCode.Mouse0) && state == PlayerStates.Launching)
         {
-            if (clampedPower > 0.01f && launchDir != Vector3.zero)
+            if (clampedPower > 0.01f && launchDir != Vector2.zero)
             {
                 myRB.linearVelocity = Vector2.zero;
 
                 float pull01 = clampedPower / maxPullDistance;   
                 pull01 = Mathf.Clamp01(pull01);
 
-               
-                float curved = 1f - Mathf.Pow(1f - pull01, 2f);   
+                float impulseMag = Mathf.Lerp(minImpulse, maxImpulse, pull01);
 
-                float impulseMag = Mathf.Lerp(minImpulse, maxImpulse, curved);
-
-                Vector2 impulse = (Vector2)(launchDir * impulseMag) * myRB.mass;
+                Vector2 impulse = launchDir * impulseMag;
                 myRB.AddForce(impulse, ForceMode2D.Impulse);
             }
             state = PlayerStates.Launched;
+            isLaunched = true;
+            if (doubleLaunch == true)
+            {
+                timesLaunched += 1;
+            }
+            mySR.color = Color.white;
         }
 
         Vector2 feet = (Vector2)transform.position + feetOffset;
@@ -113,6 +121,10 @@ public class PlayerScript3 : MonoBehaviour
         switch (state)
         {
             case PlayerStates.Idle:
+                isLaunched = false;
+                mySR.color = Color.white;
+                timesLaunched = 0;
+                clampedPower = 0f;
                 break;
 
             case PlayerStates.Launching:
@@ -126,7 +138,7 @@ public class PlayerScript3 : MonoBehaviour
                 break;
         }
     }
-
+    
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Coin"))
